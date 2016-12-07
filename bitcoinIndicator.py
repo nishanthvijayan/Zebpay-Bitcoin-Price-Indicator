@@ -24,10 +24,16 @@ class BitcoinPriceMonitor:
     def build_menu(self):
         self.menu = Gtk.Menu()
 
+        item = Gtk.MenuItem()
+        item.set_label("Reload")
+        item.connect("activate", self.handler_menu_reload)
+        item.show()
+        self.menu.append(item)
+
         # menu item for quiting the indicator
         item = Gtk.MenuItem()
-        item.set_label("Exit                      ")
-        item.connect("activate", self.handler_menu_exit )
+        item.set_label("Exit")
+        item.connect("activate", self.handler_menu_exit)
         item.show()
         self.menu.append(item)
 
@@ -36,6 +42,9 @@ class BitcoinPriceMonitor:
 
     def handler_menu_exit(self, evt):
         Gtk.main_quit()
+
+    def handler_menu_reload(self, evt):
+        self.handler_timeout()
 
     def handler_timeout(self):
         try:
