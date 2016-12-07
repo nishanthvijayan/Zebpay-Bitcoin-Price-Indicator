@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import json
 from gi.repository import Gtk, GLib
@@ -43,7 +44,7 @@ class BitcoinPriceMonitor:
             data = json.load(urlopen('https://api.coinsecure.in/v1/exchange/ticker'))
             buy_price = int(data['message']['ask'])/100
             sell_price = int(data['message']['bid'])/100
-            status_message = "Buy: " + str(buy_price) + "   Sell: " + str(sell_price) 
+            status_message = "Buy: ₹ " + str(buy_price) + "   Sell: ₹ " + str(sell_price) 
             self.ind.set_label(status_message, "")
         except Exception, e:
             print str(e)
