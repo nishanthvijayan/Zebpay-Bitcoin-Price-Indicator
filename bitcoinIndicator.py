@@ -33,15 +33,12 @@ class BitcoinPriceMonitor:
 
         self.handler_timeout()
 
-        # then start updating every 5 minutes
         GLib.timeout_add_seconds(60*5, self.handler_timeout)
 
     def handler_menu_exit(self, evt):
         Gtk.main_quit()
 
     def handler_timeout(self):
-        # This will be called every minute by the GLib.timeout.
-        # Resets the time counter if the user has been idle for too long
         try:
             data = json.load(urlopen('https://api.coinsecure.in/v1/exchange/ticker'))
             buy_price = int(data['message']['ask'])/100
