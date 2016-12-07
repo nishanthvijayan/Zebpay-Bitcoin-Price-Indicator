@@ -5,7 +5,7 @@ try:
        from gi.repository import AppIndicator3 as AppIndicator  
 except:  
        from gi.repository import AppIndicator
-from urllib2 import urlopen,Request
+from urllib2 import urlopen
 
 
 class BitcoinPriceMonitor:
@@ -42,10 +42,8 @@ class BitcoinPriceMonitor:
     def handler_timeout(self):
         # This will be called every minute by the GLib.timeout.
         # Resets the time counter if the user has been idle for too long
-        req = Request('https://api.coinsecure.in/v1/exchange/ticker')
-        req.add_header('User-agent', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:37.0) Gecko/20100101 Firefox/37.0')
         try:
-            data = json.load(urlopen(req))
+            data = json.load(urlopen('https://api.coinsecure.in/v1/exchange/ticker'))
             buy_price = int(data['message']['ask'])/100
             sell_price = int(data['message']['bid'])/100
             status_message = "Buy: " + str(buy_price) + "   Sell: " + str(sell_price) 
