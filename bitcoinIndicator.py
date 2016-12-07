@@ -16,10 +16,12 @@ class BitcoinPriceMonitor:
                             "indicator-btc-india",
                             os.path.dirname(os.path.realpath(__file__)) + "/bitcoin.png",
                             AppIndicator.IndicatorCategory.SYSTEM_SERVICES)
-
-
         self.ind.set_status (AppIndicator.IndicatorStatus.ACTIVE)
+        self.build_menu()
+        self.handler_timeout()
+        GLib.timeout_add_seconds(60*5, self.handler_timeout)
 
+    def build_menu(self):
         self.menu = Gtk.Menu()
 
         # menu item for quiting the indicator
@@ -31,10 +33,6 @@ class BitcoinPriceMonitor:
 
         self.menu.show()
         self.ind.set_menu(self.menu)
-
-        self.handler_timeout()
-
-        GLib.timeout_add_seconds(60*5, self.handler_timeout)
 
     def handler_menu_exit(self, evt):
         Gtk.main_quit()
