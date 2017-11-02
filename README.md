@@ -1,8 +1,12 @@
-Bitcoin Price Indicator
+Zebpay Bitcoin Price Indicator (Unofficial)
 ============
-Bitcoin Price Indicator is an gnome indicator app that displays the buy/sell prices of Bitcoin in India. Data is fetched from coinsecure.in.
 
-![Screenshot of it running on Ubuntu 14.04](/screens/screen_ubuntu_14.04.png?raw=true "Screenshot of it running on Ubuntu 14.04")
+An Ubuntu desktop indicator (top bar widget) that displays buy/sell prices of Bitcoin as on the Indian Bitcoin exchange Zebpay (Currently only BTC-INR). Note: This is an unofficial application and was not created by Zebpay.
+
+![Screenshot of it running on Ubuntu 16.10](/screens/screen_closeup_ubuntu_16_10.png?raw=true "Screenshot of it running on Ubuntu 16.10")
+  
+  
+![Screenshot of it running on Ubuntu 16.10](/screens/screen_full_ubuntu_16_10.png?raw=true "Screenshot of it running on Ubuntu 16.10")
 
 ### Installation
 
@@ -14,5 +18,4 @@ nohup python bitcoinIndicator.py &
 ```
 ### Planned Improvements
 
-- Add reload menu item
-- Option to change exchange (Eg: Unocoin, btcxindia etc)
+- Option to change exchange (Eg: Unocoin, btcxindia, Coinsecure etc)
