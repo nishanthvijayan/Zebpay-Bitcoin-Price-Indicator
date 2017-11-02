@@ -48,9 +48,9 @@ class BitcoinPriceMonitor:
 
     def handler_timeout(self):
         try:
-            data = json.load(urlopen('https://api.coinsecure.in/v1/exchange/ticker'))
-            buy_price = int(data['message']['ask'])/100
-            sell_price = int(data['message']['bid'])/100
+            data = json.load(urlopen('https://www.zebapi.com/api/v1/market/ticker/btc/inr'))
+            buy_price = data['buy']
+            sell_price = data['sell']
             status_message = "Buy: ₹ " + str(buy_price) + "   Sell: ₹ " + str(sell_price) 
             self.ind.set_label(status_message, "")
         except Exception, e:
