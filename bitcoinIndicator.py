@@ -14,7 +14,7 @@ class BitcoinPriceMonitor:
 
         self.ind = AppIndicator.Indicator.new(
             "indicator-btc-india",
-            os.path.dirname(os.path.realpath(__file__)) + "/bitcoin.png",
+            os.path.dirname(os.path.realpath(__file__)) + "/zebpay.png",
             AppIndicator.IndicatorCategory.SYSTEM_SERVICES
         )
         self.ind.set_status(AppIndicator.IndicatorStatus.ACTIVE)
