@@ -2,10 +2,10 @@
 import os
 import json
 from gi.repository import Gtk, GLib
-try: 
-       from gi.repository import AppIndicator3 as AppIndicator  
-except:  
-       from gi.repository import AppIndicator
+try:
+    from gi.repository import AppIndicator3 as AppIndicator
+except:
+    from gi.repository import AppIndicator
 from urllib2 import urlopen
 
 
@@ -13,13 +13,14 @@ class BitcoinPriceMonitor:
     def __init__(self):
 
         self.ind = AppIndicator.Indicator.new(
-                            "indicator-btc-india",
-                            os.path.dirname(os.path.realpath(__file__)) + "/bitcoin.png",
-                            AppIndicator.IndicatorCategory.SYSTEM_SERVICES)
-        self.ind.set_status (AppIndicator.IndicatorStatus.ACTIVE)
+            "indicator-btc-india",
+            os.path.dirname(os.path.realpath(__file__)) + "/bitcoin.png",
+            AppIndicator.IndicatorCategory.SYSTEM_SERVICES
+        )
+        self.ind.set_status(AppIndicator.IndicatorStatus.ACTIVE)
         self.build_menu()
         self.handler_timeout()
-        GLib.timeout_add_seconds(60*5, self.handler_timeout)
+        GLib.timeout_add_seconds(60 * 5, self.handler_timeout)
 
     def build_menu(self):
         self.menu = Gtk.Menu()
@@ -48,10 +49,14 @@ class BitcoinPriceMonitor:
 
     def handler_timeout(self):
         try:
-            data = json.load(urlopen('https://www.zebapi.com/api/v1/market/ticker/btc/inr'))
+            data = json.load(
+                urlopen(
+                    'https://www.zebapi.com/api/v1/market/ticker/btc/inr'
+                )
+            )
             buy_price = data['buy']
             sell_price = data['sell']
-            status_message = "Buy: ₹ " + str(buy_price) + "   Sell: ₹ " + str(sell_price) 
+            status_message = "Buy: ₹ " + str(buy_price) + "   Sell: ₹ " + str(sell_price)
             self.ind.set_label(status_message, "")
         except Exception, e:
             print str(e)
