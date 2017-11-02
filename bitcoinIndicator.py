@@ -56,7 +56,7 @@ class BitcoinPriceMonitor:
             )
             buy_price = data['buy']
             sell_price = data['sell']
-            status_message = "Buy: ₹ " + str(buy_price) + "   Sell: ₹ " + str(sell_price)
+            status_message = "Buy: ₹ " + "{:,}".format(buy_price) + "   Sell: ₹ " + "{:,}".format(sell_price)
             self.ind.set_label(status_message, "")
         except Exception, e:
             print str(e)
